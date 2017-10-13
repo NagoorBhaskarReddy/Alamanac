@@ -1,0 +1,2 @@
+# Alamanac
+just  another repository
