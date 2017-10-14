@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<style>
+
+body {
+    width:100%;
+    height:100%;
+    font-family:Arial;
+    font-size:14px;
+}
+header, footer {
+    min-height:50px;
+    position:relative;
+}
+[role="contents"] {
+    position:relative;
+}
+.mega-nav {
+    background:#2a8fcf;
+    border-radius:0;
+    margin-bottom:0;
+}
+
+.bg-grey {
+      background-color: #2a8fcf;
+  }
+
+.mega-nav.navbar-default .navbar-nav > li > a {
+    color:#fff;
+    transition: all 200ms ease-out;
+    -webkit-transition: all 200ms ease-out;
+    -ms-transition: all 200ms ease-out;
+}
+.mega-nav.navbar-default .navbar-nav > li > a:hover {
+    background:#0075b3;
+} 
+
+#MainMenu {
+    padding-left:0;
+}
+#MainMenu .menu-list li {
+    transition: all 200ms ease-out;
+    -webkit-transition: all 200ms ease-out;
+    -ms-transition: all 200ms ease-out;
+}
+#MainMenu .menu-list li + li {
+    border-left:1px solid rgba(255, 255, 255, 0.5);
+}
+
+.mega-nav.navbar-default .navbar-nav > li.menu-list .list-category a {
+    color:#333;
+}
+.darkness {
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 5;
+}
+
+</style>
+
+<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+<body>
+    <header>
+        <div class="center-block text-center">
+            <h3>
+                <h1>SCHOOL</h1><BR>
+            </h3>
+        </div>
+    </header>
+    <nav class="navbar navbar-default mega-nav">
+        <div class="container">
+        
+        <div class="collapse navbar-collapse" id="MainMenu">
+            <ul class="nav navbar-nav menu-list">
+                
+                <li><a href="/">Home</a></li>
+                <li><a href="/student/">Students</a></li>
+                <li><a href="/teacher/">Teachers</a></li>
+                <li><a href="/parents/">Parents</a></li>
+		<li><a href="/uniform/">Uniform</a></li>
+            </ul>
+            <form id="mega-search" class="navbar-form navbar-right">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </form>
+        </div>
+        </div>
+    </nav>
+    <main role="contents">
+        <div class="container">
+            <section class="main-banner">
+                <img src="https://shop365.com.sg/media/wysiwyg/home/Home-Page-Banner---Kenwood-_-Delonghi.jpg" alt="" class="img-responsive" />
+            </section>
+        </div>
+        <div class="darkness"></div>
+    </main>
+    <footer>
+        <div class="darkness"></div>
+    </footer>
+
+
+<div class="col-sm-12">
+	<div class="col-sm-2"><button class="btn btn-info" id="add_parents">Add</button><button class="btn btn-info" style="margin-left:5px;" id="view_parents">View</button></div>
+</div>
+
+
+
+<div class="container" id="parents_add_div" style="display:none;">
+  <h2>Address Entry Form</h2>
+  <form class="form-horizontal" action="/parents/" method="post" id="parents_form">{% csrf_token %}
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="p_name">Address </label>
+       <div class="col-sm-10">
+      <select class="form-control" name="student">
+          <option value="">Select student</option>
+          {% for student in students %}
+              <option value="{{ student.id }}">{{student.name}}</option>
+          {% endfor %}
+      </select>
+       </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="">House Number:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="house_number" placeholder="Enter House Number" name="house_number">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="">Street:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="street" placeholder="Enter Street" name="street">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="">Area:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="area" placeholder="Enter Area Name" name="area">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="section">City:</label>
+      <div class="col-sm-10">          
+        <input type="email" class="form-control" id="city" placeholder="Enter City Name" name="city">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="section">State:</label>
+      <div class="col-sm-10">          
+        <input type="email" class="form-control" id="state" placeholder="Enter State Name" name="state">
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="">City:</label>
+      <div class="col-sm-10">          
+        <input type="email" class="form-control" id="city" placeholder="Enter City Name" name="city">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="">Country:</label>
+      <div class="col-sm-10">          
+        <input type="email" class="form-control" id="country" placeholder="Enter Country Name" name="country">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="">Pincode:</label>
+      <div class="col-sm-10">          
+        <input type="email" class="form-control" id="pincode" placeholder="Enter PinCode Name" name="pincode">
+      </div>
+    </div>
+
+
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-default">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="container" id="parents_view_div">
+  <h2>Parents List</h2>
+              <table class="table table-bordered">
+                <tr>
+                  <th style="width: 10px">Student</th>
+                  <th>parents name</th>
+                  <th>parents age</th>
+		  <th>parents mobile</th>			
+		 </tr>
+		{% for stud in parents %}
+                <tr>
+                 
+                 <td>{{ stud.student.name }}</td>
+                  <td>{{ stud.p_name }}</td>
+                  <td>{{ stud.p_age }}</td>
+		  <td>{{ stud.p_mobile }}</td>
+                </tr>
+		{% endfor %}
+              </table>
+</div>
+
+
+<div class="container-fluid bg-grey">
+  <h2 class="text-center">CONTACT</h2>
+  <div class="row">
+    <div class="col-sm-5">
+      <p>Contact us and we'll get back to you within 24 hours.</p>
+      <p><span class="glyphicon glyphicon-map-marker"></span> Banglore, INDIA</p>
+      <p><span class="glyphicon glyphicon-phone"></span> +91 1234567890</p>
+      <p><span class="glyphicon glyphicon-envelope"></span> school@something.com</p>
+    </div>
+    <div class="col-sm-7">
+      <div class="row">
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+        </div>
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+        </div>
+      </div>
+      <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
+      <div class="row">
+        <div class="col-sm-12 form-group">
+          <button class="btn btn-default pull-right" onclick="submitForm()">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+$(document).ready(function(){
+    $("#add_parents").click(function(){
+        
+        $('#parents_add_div').show();
+        $('#parents_view_div').hide();
+    });
+    $("#view_parents").click(function(){
+        $('#parents_view_div').show();
+        $('#parents_add_div').hide();
+    });
+});
+function submitForm()
+{
+
+    document.getElementById("parents_form").submit(); 
+}
+
+
+
+
+function validateform(){
+
+var regexp1=new RegExp("[^a-z|^A-Z|^\s]");
+if(regexp1.test(document.getElementById("p_name").value))
+{
+alert("Only alphabets from a-z are allowed");
+return false;
+}
+
+
+var regexp2=new RegExp("[^0-9]");
+if(regexp2.test(document.getElementById("p_age").value))
+{
+alert("Only numbers from 0-9 are allowed");
+return false;
+}
+
+var regexp3=new RegExp("^\d{10}$");
+if(regexp3.test(document.getElementById("p_mobile").value))
+{
+alert("Only 10 numbers are allowed");
+return false;
+}
+
+var regexp4=new RegExp("/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/");
+if(regexp4.test(document.getElementById("p_mobile").value))
+{
+alert("Only email id  are allowed");
+return false;
+}
+}
+
+
+
+</script>
+
+
+
+</body>
+</html>
+
+

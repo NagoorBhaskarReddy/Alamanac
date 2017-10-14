@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
+
+  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+</head>
+<style>
+
+ body{        
+        padding-top: 60px;
+        padding-bottom: 40px;
+    }
+    .fixed-header {
+        width: 100%;
+        position: fixed;        
+        background-color:#2a8fcf;
+        padding: 20px 0;
+        color: #fff;
+	
+    }
+    .fixed-header{
+        top: 0;
+    }
+
+
+ nav a{ 
+        color: black;
+        text-decoration: none;
+        padding: 7px 25px;
+        display: inline-block;
+	color:#fff;
+    }
+
+
+footer{ background-color:#2a8fcf; text-align: center;; color:#fff; } 
+
+.glyphicon {
+    font-size: 35px;
+}
+
+</style>
+
+<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+<body>
+   <div class="fixed-header">
+	<div class="container" style="text-align:center;">
+	<h1>KIDS SCHOOL</h1>
+
+</div>
+        <div class="container">
+            <nav>
+                <a href="#"><br><h2>Home</h2></a>
+                      
+                <a href="/gallery/"><br><h2>Gallery</h2></a>
+                <a href="/contact/"><br><h2>Contact</h2></a>
+		
+		<a href="/student/"><br><h2>Student</h2></a>
+		<a href="/parents/"><br><h2>Parents</h2></a>
+		<a href="/teacher/"><br><h2>Teacher</h2></a>
+		<a href="/attendance/"><br><h2>Attendance</h2></a>
+		
+		
+            </nav>
+        </div>
+ </div>
+ </div>
+<br><br><br><br><br><br><br><br><br><br>
+
+<div class="col-sm-12">
+	<div class="col-sm-2"><button class="btn btn-info" id="add_uniform">Add</button><button class="btn btn-info" style="margin-left:5px;" id="view_uniform">View</button></div>
+
+
+</div>
+
+<div class="container" id="uniform_add_div" style="display:none;">
+  <h2> Uniform</h2>
+  <form class="form-horizontal" action="/uniform/" method="post" id="uniform_form" name="myform" onsubmit="return validateform()">{% csrf_token %}
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="">Shirt color:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="shirt_color" placeholder="Enter Teacher Name" name="shirt_color">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="">Phant Color:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="phant_color" placeholder="Enter Phant Color" name="phant_color">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="">Shirt Size:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="shirt_size" placeholder="Enter Shirt Size" name="shirt_size">
+      </div>
+    </div>
+    
+
+   <div class="form-group">
+      <label class="control-label col-sm-2" for="">Phant Size:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="Phant_size" placeholder="Enter Phant Size" name="phant_size">
+      </div>
+    </div>
+
+
+
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button class="btn btn-default">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="container" id="uniform_view_div">
+  <h2>Uniform List</h2>
+              <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                  <th>Shirt Color</th>
+                  <th>Phant Color</th>
+		  <th>Shirt Size</th>
+		  <th>Phant Size</th>			
+		 </thead>
+		<tbody>
+		{% for stud in uniform %}
+                <tr>
+                 
+                 
+                  <td>{{ stud.shirt_color }}</td>
+                  <td>{{ stud.phant_color }}</td>
+		  <td>{{ stud.shirt_size }}</td>
+		  <td>{{ stud.phant_size }}</td>
+                </tr>
+		{% endfor %}
+		</tbody>
+              </table>
+</div>
+
+
+<div>
+<footer class="container-fluid bg-4 text-center">
+  <h1>contact us</h1> 
+
+
+<div class="col-sm-4">
+<center>
+
+<i class="glyphicon glyphicon-home" styel="font-size: 50px;"></i>
+<h3>Postal Address</h3>
+<h5> Little School, #207, 1st Stage,4th BLock Baddrapp Layout</h5>
+<h5> Hebbal Main Road,Near Indian Acadamy</h5>
+<h5> Bangalore, Karnataka – 560043</h5> 
+
+</center>
+</div>
+
+<div class="col-sm-4">
+<center>
+
+<i class="glyphicon glyphicon-phone-alt" styel="font-size: 50px;"></i>
+<h3>Phone&Email</h3>
+
+<h5> Tel : +91 – 9000000008 </h5>
+<h5> 080 – 68888 098</h5>
+<h5>Email : littleschool@gmail.com</h5> 
+</center>
+</div>
+
+<div class="col-sm-4">
+<center>
+
+<i class="glyphicon glyphicon-time" styel="font-size: 50px;"></i>
+<h3>School Timings</h3>
+
+<h5> Monday-Saturday </h5>
+<h5> 09:00 AM to 6:30 PM</h5>
+<h5>Sunday Closed</h5> 
+</center>
+</div>
+
+</footer>
+
+
+</div>
+
+ 
+
+<script>
+$(document).ready(function(){
+   $(document).ready(function(){
+    $('#example').DataTable();
+   } );
+
+   
+   $("#add_uniform").click(function(){
+	$('#uniform_add_div').show();
+	$('#uniform_view_div').hide();
+   });
+
+   $("#view_uniform").click(function(){
+	$('#uniform_view_div').show();
+	$('#uniform_add_div').hide();
+   });
+});
+function submitForm()
+{
+
+	document.getElementById("uniform_form").submit();
+
+}
+
+
+
+function validateform(){
+var s_color=new RegExp("[^a-z|^A-Z]");
+if(s_color.test(document.getElementById("shirt_color").value))
+{
+alert("only alphabates are allowed");
+return false;
+}
+
+var p_color=new RegExp("[^a-z|^A-Z]");
+if(p_color.test(document.getElementById("phant_color").value))
+{
+alert("only alphabates are allowed");
+return false;
+}
+
+var s_size=new RegExp("[^0-9]");
+if(s_size.test(document.getElementById("s_size").value))
+{
+alert("only numbers are allowed");
+return false;
+}
+
+var p_size=new RegExp("[^0-9]");
+if(p_size.test(document.getElementById("p_size").value))
+{
+alert("only numbers are allowed")
+return false;
+}
+}
+</script>
+
+</body>
+</html>
+
+
